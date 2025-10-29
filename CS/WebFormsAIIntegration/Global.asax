@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="WebFormsAIIntegration.Global_asax" Language="C#" %>
