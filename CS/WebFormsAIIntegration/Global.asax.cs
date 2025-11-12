@@ -1,4 +1,4 @@
-using Azure.AI.OpenAI;
+﻿using Azure.AI.OpenAI;
 using DevExpress.AIIntegration;
 using DevExpress.Web.ASPxRichEdit.Internal;
 using Microsoft.Extensions.AI;

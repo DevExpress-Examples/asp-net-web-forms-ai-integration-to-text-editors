@@ -17,34 +17,35 @@ namespace WebFormsAIIntegration.Models {
             }
         }
 
-        public static async Task<string> GetResponseAsync(AIRequestData aiRequestData) {
-            TextResponse result = null;
+        public static async Task<string> GetResponseAsync(AIRequestData commandParameter) {
+            if(AIService == null) {
+                return "The AI service is not available";
+            }
             string style = "";
-            var commandParts = aiRequestData.Command.Split('-');
+            var commandParts = commandParameter.Command.Split('-');
             if(commandParts.Length == 2) {
                 style = commandParts[1];
             }
-            result = aiRequestData.Command switch {
-                "Summarize" => await AIService.AbstractiveSummaryAsync(new AbstractiveSummaryRequest(aiRequestData.Text)),
-                "Explain" => await AIService.ExplainAsync(new ExplainRequest(aiRequestData.Text)),
-                "Proofread" => await AIService.ProofreadAsync(new ProofreadRequest(aiRequestData.Text)),
-                "Expand" => await AIService.ExpandAsync(new ExpandRequest(aiRequestData.Text)),
-                "Shorten" => await AIService.ShortenAsync(new ShortenRequest(aiRequestData.Text)),
-                string s when s.StartsWith("Translate") => await AIService.TranslateAsync(new TranslateRequest(aiRequestData.Text, style)),
-                string s when s.StartsWith("ChangeStyle") => await AIService.ChangeStyleAsync(new ChangeStyleRequest(aiRequestData.Text, (WritingStyle)Enum.Parse(typeof(WritingStyle), style))),
-                string s when s.StartsWith("ChangeTone") => await AIService.ChangeToneAsync(new ChangeToneRequest(aiRequestData.Text, (ToneStyle)Enum.Parse(typeof(ToneStyle), style))),
+            TextResponse result = commandParameter.Command switch {
+                "Summarize" => await AIService.AbstractiveSummaryAsync(new AbstractiveSummaryRequest(commandParameter.Text)),
+                "Explain" => await AIService.ExplainAsync(new ExplainRequest(commandParameter.Text)),
+                "Proofread" => await AIService.ProofreadAsync(new ProofreadRequest(commandParameter.Text)),
+                "Expand" => await AIService.ExpandAsync(new ExpandRequest(commandParameter.Text)),
+                "Shorten" => await AIService.ShortenAsync(new ShortenRequest(commandParameter.Text)),
+                string s when s.StartsWith("Translate") => await AIService.TranslateAsync(new TranslateRequest(commandParameter.Text, style)),
+                string s when s.StartsWith("ChangeStyle") => await AIService.ChangeStyleAsync(new ChangeStyleRequest(commandParameter.Text, (WritingStyle)Enum.Parse(typeof(WritingStyle), style))),
+                string s when s.StartsWith("ChangeTone") => await AIService.ChangeToneAsync(new ChangeToneRequest(commandParameter.Text, (ToneStyle)Enum.Parse(typeof(ToneStyle), style))),
                 _ => null
             };
             string text = "";
-            if(result.IsCompleted)
+            if(!ReferenceEquals(result, null) && result.IsCompleted)
                 text = result.Response;
             else if(!result.IsRestrictedOrFailed) {
-                string translatedText = result.Response;
+                text = result.Response;
                 while(result.IsContinuationRequired) {
                     await result.ContinueAsync();
-                    translatedText += result.Response;
+                    text += result.Response;
                 }
-                text = translatedText;
             }
             else {
                 text = "An error occurred while processing your request";

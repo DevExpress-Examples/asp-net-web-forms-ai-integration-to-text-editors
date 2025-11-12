@@ -6,12 +6,12 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript">
-        var pendingCommand = "";
+        let pendingCommand = "";
 
         function OnCustomCommand(s, e) {
             if (e.commandName.startsWith('AI')) {
-                var command = e.commandName.split(':')[1];
-                var selectedText = s.GetSelection().GetText();
+                const command = e.commandName.split(':')[1];
+                const selectedText = s.GetSelection().GetText();
                 if (selectedText !== '') {
                     htmlEditor.ShowLoadingPanel();
                     pendingCommand = command.split("-")[0];
@@ -32,7 +32,9 @@
         }
 
         function OnCopyClick(s, e) {
-            navigator.clipboard.writeText(aiTextMemo.GetText());
+            if (navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(aiTextMemo.GetText());
+            }
             popup.Hide();
         }
 

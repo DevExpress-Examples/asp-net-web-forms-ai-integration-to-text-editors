@@ -6,15 +6,15 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript">
-        var pendingCommand = "";
+        let pendingCommand = "";
 
         function OnCustomCommandExecuted(s, e) {
             if (e.commandName.startsWith('AI')) {
-                var command = e.commandName.split(':')[1];
+                const command = e.commandName.split(':')[1];
                 if (s.selection.intervals.length > 0) {
-                    var selectedInterval = s.selection.intervals[0];
+                    const selectedInterval = s.selection.intervals[0];
                     if (selectedInterval.length > 0) {
-                        var selectedText = s.document.activeSubDocument.getTextByInterval(selectedInterval);
+                        const selectedText = s.document.activeSubDocument.getTextByInterval(selectedInterval);
                         richEdit.loadingPanel.show();
                         pendingCommand = command.split("-")[0];
                         callback.PerformCallback(JSON.stringify({ Command: command, Text: selectedText }));
@@ -34,7 +34,9 @@
         }
 
         function OnCopyClick(s, e) {
-            navigator.clipboard.writeText(aiTextMemo.GetText());
+            if (navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(aiTextMemo.GetText());
+            }
             popup.Hide();
         }
 
