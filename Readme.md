@@ -1,3 +1,8 @@
+<!-- default badges list -->
+[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1311841)
+[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
+[![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
+<!-- default badges end -->
 # ASP.NET Web Forms HTML Editor and Rich Text Editor - Integrate AI-powered Extensions
 
 This example integrates AI-powered extensions into both the ASP.NET Web Forms HTML Editor and Rich Text Editor. These extensions supply AI functions designed to process text/HTML content.
