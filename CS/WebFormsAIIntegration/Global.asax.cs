@@ -10,16 +10,15 @@ namespace WebFormsAIIntegration {
 
     public class Global_asax : System.Web.HttpApplication {
         void Application_Start(object sender, EventArgs e) {
-            var credentials = (new ApiKeyCredential("DEMO"));
-
-            IChatClient client = (new AzureOpenAIClient(
-                                    new Uri("https://public-api.devexpress.com/demo-openai"),
-                                    credentials
-                                )).GetChatClient("gpt-4o-mini").AsIChatClient();
+            string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+            string azureOpenAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
             var defaultAIContainer = new AIExtensionsContainerDefault();
-            defaultAIContainer.RegisterChatClient(client);
+            var azureOpenAIClient = new AzureOpenAIClient(
+                new Uri(azureOpenAIEndpoint),
+                new ApiKeyCredential(azureOpenAIKey));
 
-
+            var chatClient = azureOpenAIClient.GetChatClient("gpt-4o-mini").AsIChatClient();
+            defaultAIContainer.RegisterChatClient(chatClient);
             Application["AIService"] = defaultAIContainer;
         }
     }
