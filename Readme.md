@@ -14,7 +14,8 @@ Both the HTML Editor ([ASPxHtmlEditor](https://docs.devexpress.com/AspNet/DevExp
 * **Change Tone**: rewrites text using the specified tone
 * **Expand**: expands text
 * **Explain**: explains text
-* **Proofread** proofreads text
+* **Proofread**: proofreads text
+
 * **Shorten**: shortens text
 * **Summarize**: summarizes text
 * **Translate** translates text into the specified language.
