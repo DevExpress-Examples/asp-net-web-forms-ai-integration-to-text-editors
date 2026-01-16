@@ -6,19 +6,17 @@
 <!-- default badges end -->
 # ASP.NET Web Forms - Integrate AI-powered Extensions into HTML Editor and Rich Text Editor
 
-This example integrates AI-powered extensions into ASP.NET Web Forms HTML Editor and Rich Text Editor. These extensions add AI functions designed to process text/HTML content.
+This example adds AI-powered extensions to our ASP.NET Web Forms HTML Editor and Rich Text Editor. These extensions introduce AI functions designed to process text/HTML content.
 
+Both the HTML Editor ([ASPxHtmlEditor](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxHtmlEditor.ASPxHtmlEditor)) and Rich Text Editor ([ASPxRichEdit](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxRichEdit.ASPxRichEdit)) contain a custom **AI Assistant** ribbon tab populated with the following AI-powered commands:
 
-Both HTML Editor ([ASPxHtmlEditor](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxHtmlEditor.ASPxHtmlEditor)) and Rich Text Editor ([ASPxRichEdit](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxRichEdit.ASPxRichEdit)) contain a custom **AI Assistant** ribbon tab populated with the following AI-powered commands:
-
-
-* **Change Style** rewrites text using the specified style.
-* **Change Tone** rewrites text using the specified tone.
-* **Expand** expands text.
-* **Explain** explains text.
-* **Proofread** proofreads text.
-* **Shorten** shortens text.
-* **Summarize** summarizes text.
+* **Change Style**: rewrites text using the specified style
+* **Change Tone**: rewrites text using the specified tone
+* **Expand**: expands text
+* **Explain**: explains text
+* **Proofread** proofreads text
+* **Shorten**: shortens text
+* **Summarize**: summarizes text
 * **Translate** translates text into the specified language.
 
 For a full list of DevExpress AI-powered extensions and corresponding registration methods, refer to the following help topic: [AI-powered Extensions](https://docs.devexpress.com/CoreLibraries/405204/ai-powered-extensions#ai-powered-extensions).
@@ -59,14 +57,11 @@ To register AI Services and activate AI-powered extensions, configure your appli
 
 ### Add AI-powered Commands to the DevExpress ASP.NET Web Forms HTML Editor
 
-
-1. Create a new **AI Assistant** ribbon tab and add it to the ribbon tab collection using the [ASPxHtmlEditor.RibbonTabs](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxHtmlEditor.ASPxHtmlEditor.RibbonTabs) property. Populate the tab with items as needs diactate ([HtmlEditor.aspx.cs](./CS/WebFormsAIIntegration/HtmlEditor.aspx.cs)). 
-
+1. Create a new **AI Assistant** Ribbon tab and add it to the Ribbon tab collection using the [ASPxHtmlEditor.RibbonTabs](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxHtmlEditor.ASPxHtmlEditor.RibbonTabs) property. Populate the tab with items as needs dictate ([HtmlEditor.aspx.cs](./CS/WebFormsAIIntegration/HtmlEditor.aspx.cs)). 
 
 2. Add an [ASPxCallback](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxCallback) component to page markup.
 
 3. Handle the [ASPxHtmlEditor.CustomCommand](https://docs.devexpress.com/AspNet/js-ASPxClientHtmlEditor.CustomCommand) event to process custom command clicks ([HtmlEditor.aspx](./CS/WebFormsAIIntegration/HtmlEditor.aspx)). In the handler, obtain the command text and pass it to the [ASPxClientCallback.PerformCallback](https://docs.devexpress.com/AspNet/js-ASPxClientCallback.PerformCallback(parameter)) method as a parameter.
-
 
     ```cs
     function OnCustomCommand(s, e) {
@@ -125,15 +120,11 @@ To register AI Services and activate AI-powered extensions, configure your appli
 
 ### Add AI-powered Commands to the DevExpress ASP.NET Web Forms Rich Text Editor
 
-
-1. Create a new **AI Assistant** ribbon tab and add it to the ribbon tab collection using the [ASPxRichEdit.RibbonTabs](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxRichEdit.ASPxRichEdit.RibbonTabs) property. Populate the tab with items as needs dictate ([RichEdit.aspx.cs](./CS/WebFormsAIIntegration/RichEdit.aspx.cs)).
-
+1. Create a new **AI Assistant** Ribbon tab and add it to the Ribbon tab collection using the [ASPxRichEdit.RibbonTabs](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxRichEdit.ASPxRichEdit.RibbonTabs) property. Populate the tab with items as needs dictate ([RichEdit.aspx.cs](./CS/WebFormsAIIntegration/RichEdit.aspx.cs)).
 
 2. Add an [ASPxCallback](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxCallback) component to page markup.
 
-
 3. Handle the [ASPxRichEdit.CustomCommandExecuted](https://docs.devexpress.com/AspNet/js-ASPxClientRichEdit.CustomCommandExecuted) event to process custom command clicks ([RichEdit.aspx](./CS/WebFormsAIIntegration/RichEdit.aspx)). In the handler, obtain the command text and pass it to the [ASPxClientCallback.PerformCallback](https://docs.devexpress.com/AspNet/js-ASPxClientCallback.PerformCallback(parameter)) method as a parameter.
-
 
     ```cs
     function OnCustomCommandExecuted(s, e) {
@@ -156,7 +147,6 @@ To register AI Services and activate AI-powered extensions, configure your appli
 
 4. Handle the [ASPxCallback.Callback](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxCallback.Callback) event to pass command text to the [AIHelper](./CS/WebFormsAIIntegration/Models/AIHelper.cs) service and call the corresponding AI-powered method. To access modified data on the client, save the AI service response to [ASPxCallBack.JSProperties](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxCallback.JSProperties).
 
-
     ```cs
     protected async void ASPxCallback1_Callback(object source, CallbackEventArgs e) {
         ASPxCallback callback = (ASPxCallback)source;
@@ -168,7 +158,6 @@ To register AI Services and activate AI-powered extensions, configure your appli
     ```
 
 5. Handle the [ASPxCallback.CallbackComplete](https://docs.devexpress.com/AspNet/js-ASPxClientCallback.CallbackComplete) event to display modified text as needs dictate. This example opens a [popup window](./CS/WebFormsAIIntegration/RichEdit.aspx#L62-L76) and allows users to apply changes or copy modified text to the clipboard.
-
 
     ```js
     function OnCallbackComplete(s, e) {
@@ -222,3 +211,4 @@ To register AI Services and activate AI-powered extensions, configure your appli
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
