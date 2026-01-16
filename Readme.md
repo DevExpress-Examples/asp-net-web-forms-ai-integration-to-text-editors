@@ -18,8 +18,7 @@ Both the HTML Editor ([ASPxHtmlEditor](https://docs.devexpress.com/AspNet/DevExp
 
 * **Shorten**: shortens text
 * **Summarize**: summarizes text
-* **Translate**: translates text into the specified language.
-
+* **Translate**: translates text into the specified language
 
 For a full list of DevExpress AI-powered extensions and corresponding registration methods, refer to the following help topic: [AI-powered Extensions](https://docs.devexpress.com/CoreLibraries/405204/ai-powered-extensions#ai-powered-extensions).
 
@@ -213,4 +212,5 @@ To register AI Services and activate AI-powered extensions, configure your appli
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
 
