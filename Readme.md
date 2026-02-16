@@ -206,7 +206,7 @@ To register AI Services and activate AI-powered extensions, configure your appli
 - [Blazor Rich Text Editor and HTML Editor - Integrate AI-powered extensions](https://github.com/DevExpress-Examples/blazor-ai-integration-to-text-editors)
 
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=draft-how-to-integrate-AI-in-ASPxRichEdit-and-ASPxHtmlEditor&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=draft-how-to-integrate-AI-in-ASPxRichEdit-and-ASPxHtmlEditor&~~~was_helpful=no)
 
